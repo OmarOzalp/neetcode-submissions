@@ -1,0 +1,20 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+
+        # given an integer array of houses. 
+        # cannot rob two adjacent houses. 
+        # The best we can do is either we rob 
+        # this house or the house before it. 
+
+        dp = [0] * len(nums)
+        dp[0] = nums[0]
+
+        for i in range(1, len(nums)):
+            if i == 1:
+                dp[i] = max(nums[i], dp[i - 1])
+            else:
+                dp[i] = max(nums[i] + dp[i - 2], dp[i-1])
+        
+        return dp[-1]
+
+        
